@@ -84,10 +84,14 @@ def getGuess(alreadyGuessed):
             print('Пожалуйста, введите букву кириллицы')
         else:
             return guess
+
+def playAgain():
+    print('Хотите попробовать еще раз? ("Да" или "Нет")')
+    return input().lower().startswith('д')
+
 missedLetters = ''
 correctLetters = ''
 secretWord = getRandomWord(words)
-print(secretWord)
 gameIsDone = False
 
 while True:
@@ -109,3 +113,12 @@ while True:
         if len(missedLetters) == len(HANGMANPICS) - 1:
             displayBoard(HANGMANPICS, missedLetters, secretWord)
             print(f'Ты приограл!\nПосле '+str(len(missedLetters))+' ошибок и '+ str(len(correctLetters))+ ' угаданных букв.\nЗагаданное слово: '+ secretWord)
+            gameIsDone = True
+    if gameIsDone:
+        if playAgain():
+            missedLetters = ''
+            correctLetters = ''
+            secretWord = getRandomWord(words)
+            gameIsDone = False
+    else:
+        break
