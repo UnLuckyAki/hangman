@@ -120,5 +120,5 @@ while True:
             correctLetters = ''
             secretWord = getRandomWord(words)
             gameIsDone = False
-    else:
-        break
+        else:
+            break
